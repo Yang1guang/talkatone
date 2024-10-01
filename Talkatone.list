@@ -1,18 +1,16 @@
-
 # 去广告规则
 [Rewrite]
 # Talkatone内广告的去除规则
 # 拦截广告请求并返回空的响应，防止广告加载
-^https?:\/\/.*\.talkatone\.com\/.*\/ads\.json$ reject-dict
-^https?:\/\/.*\.googlesyndication\.com\/.*$ reject
-^https?:\/\/.*\.admob\.com\/.*$ reject
+https:googlesyndication.com reject
+https:admob.com reject
 
 # 拦截其他可能的广告请求
-^https?:\/\/.*\.doubleclick\.net\/.*$ reject
-^https?:\/\/.*\.moatads\.com\/.*$ reject
+https:doubleclick.net reject
+https:moatads.com reject
 
 [Mitm]
 # 需要中间人攻击(Mitm)来解密流量，以便应用以上的重写规则
 # 确保你已经开启了Mitm功能，并安装了相应的证书
 hostname = *.talkatone.com, *.googlesyndication.com, *.admob.com, *.doubleclick.net, *.moatads.com
-```
+
